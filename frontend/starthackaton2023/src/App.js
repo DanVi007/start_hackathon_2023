@@ -1,7 +1,7 @@
-import Hei from "./components/hei"
+import Storage from './pages/storage'
 function App() {
   return (
-    <Hei/>
+    <Storage/>
   );
 }
 
