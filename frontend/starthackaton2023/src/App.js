@@ -1,7 +1,11 @@
-import Hei from "./components/hei"
+import Recipes from "./pages/recipes"
+import "./App.css"
 function App() {
   return (
-    <Hei/>
+    <div class = "padding">
+      <Recipes/>
+    </div>
+    
   );
 }
 
