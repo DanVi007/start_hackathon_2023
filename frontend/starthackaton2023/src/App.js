@@ -1,9 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Hei from "./components/hei"
 function App() {
   return (
-    <div></div>
+    <Hei/>
   );
 }
 
