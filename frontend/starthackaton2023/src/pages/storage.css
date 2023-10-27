@@ -35,3 +35,17 @@
     border: none; /* Remove focus outline or border (for accessibility, you might want to provide a different focus style) */
   }
   
+  hr {
+    height: 4px;
+    background-color: green;
+    border: none;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    width: 1fr;
+  }
+  
