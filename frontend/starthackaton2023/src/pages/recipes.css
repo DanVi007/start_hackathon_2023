@@ -1,0 +1,15 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px; /* Adjust this value to control the gap between grid items */
+  }
+  
+  .grid-item {
+    background-color: white; /* Adjust this to set the background color of grid items */
+    border: 1px solid gray; /* Add borders or styling as needed */
+    width: 110px;
+    height: 50px;
+    padding: 10px; /* Adjust padding as needed */
+    text-align: center; /* Center the content in each grid item */
+  }
