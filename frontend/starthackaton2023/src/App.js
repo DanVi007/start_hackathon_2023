@@ -3,7 +3,7 @@ import Recipes from "./pages/recipes"
 import "./App.css"
 function App() {
   return (
-    <Hei/>
+    <Storage/>
   );
 }
 
