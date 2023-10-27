@@ -1,0 +1,37 @@
+.buttons {
+    display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  gap: 20%; /* Add space between the button and the dropdown */
+}
+
+#storagetype {
+    display: inline-block;
+}
+
+/* Style the dropdown button */
+.dropdown-button {
+    background-color: gainsboro;
+    color: green;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners */
+  }
+  
+  /* Style the select element */
+  .dropdown-select {
+    appearance: none; /* Remove the default OS-specific styling */
+    background-color: white;
+    border: 1px solid #ccc; /* Add a border to the select element (you can remove this line if you want to remove the border) */
+    padding: 10px 20px; /* Adjust padding as needed */
+    color: green; /* Set text color to green */
+    border-radius: 5px; /* Add rounded corners */
+  }
+  
+  /* Remove the default outline/border on focus for the select element */
+  .dropdown-select:focus {
+    outline: none;
+    border: none; /* Remove focus outline or border (for accessibility, you might want to provide a different focus style) */
+  }
+  
