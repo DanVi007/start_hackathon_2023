@@ -18,6 +18,8 @@
     margin-right: 7.5%;
     width: 60%; /* Set the width as needed */
     height: 20px; /* Set the height as needed */
+    text-align: left;
+    
   }
 
 #storagetype {
@@ -58,7 +60,9 @@
   }
 
   .search-field {
-    width: 250px; /* Set the width to your desired value (e.g., 200 pixels) */
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    width: 100%; /* Set the width to your desired value (e.g., 200 pixels) */
     padding: 5px; /* Add padding as needed for styling */
     font-size: 10px; /* Set the font size as needed */
     border-radius: 5px;
