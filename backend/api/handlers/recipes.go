@@ -33,14 +33,17 @@ func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func getAllRecipes(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	var recipesFound []structs.Recipe
-	results, err := db.Query("SELECT id, name, mealTime, information FROM recipes;")
+	results, err := db.Query("SELECT id, name, mealTime, information,time_it_takes, roasting_time,rest_time,rating,difficulty FROM recipes;")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	for results.Next() {
 		var recipe structs.Recipe
-		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime, &recipe.Information)
+		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime,
+			&recipe.Information, &recipe.TimeItTakes, &recipe.RoastingTime,
+			&recipe.RestTime, &recipe.Rating, &recipe.Difficulty)
+
 		if err != nil {
 			log.Println(err.Error())
 		}

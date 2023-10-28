@@ -7,6 +7,11 @@ type Recipe struct {
 	MealTime string `json:"mealTime"`
 	Information string `json:"information"`
 	Image string `json:"image"`
+	TimeItTakes string `json:"time_it_takes"`
+	RoastingTime string `json:"roasting_time"`
+	RestTime string `json:"rest_time"`
+	Rating string `json:"rating"`
+	Difficulty string `json:"difficulty"`
 }
 
 
