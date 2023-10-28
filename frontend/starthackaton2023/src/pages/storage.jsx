@@ -6,6 +6,7 @@ import plus from "../imgs/plus.png";
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
   const [selectedStorageType, setSelectedStorageType] = useState("refrigerator"); // Default value
+  const [searchQuery, setSearchQuery] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +30,10 @@ function Storage() {
       <h1 id="title">DINE VARER</h1>
       <hr className="custom-hr" />
       <div className="container">
-        <input type="text" className="search-field" placeholder="Søk etter varer..." />
+        <input type="text" 
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  value={searchQuery}
+                  className="search-field" placeholder="Søk etter varer..." />
       </div>
       <div className="buttons">
         <select
@@ -56,12 +60,25 @@ function Storage() {
         </button>
       </div>
       <div className="ingredient-list">
-      {ingredients.filter((ingredient) => ingredient.storageType.toLowerCase() === selectedStorageType).map((ingredient) => (
-            <button className="ingredient-button">
-              {ingredient.name} - {ingredient.quantity}
-            </button>
-          ))}
-      </div>
+  {ingredients
+    .filter((ingredient) =>
+      ingredient.storageType.toLowerCase() === selectedStorageType
+    )
+    .filter((ingredient) => {
+      // Check if searchQuery is empty
+      if (searchQuery.trim() === "") {
+        return true; // If searchQuery is empty, include all ingredients
+      }
+      // If searchQuery is not empty, filter by ingredient name
+      return ingredient.name.toLowerCase().includes(searchQuery.toLowerCase());
+    })
+    .map((ingredient) => (
+      <button className="ingredient-button">
+        {ingredient.name} - {ingredient.quantity}
+      </button>
+    ))}
+</div>
+
     </div>
   );
 
