@@ -9,8 +9,7 @@ import (
 	"net/http"
 )
 
-
-func HandleRecipes(db *sql.DB)  func(w http.ResponseWriter, r *http.Request) { 
+func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodGet:
@@ -18,20 +17,20 @@ func HandleRecipes(db *sql.DB)  func(w http.ResponseWriter, r *http.Request) {
 		default:
 			log.Print("No implementation for method " + r.Method)
 			http.Error(w, http.StatusText(http.StatusNotImplemented), http.StatusNotImplemented)
-		} 
+		}
 	}
 }
 
 func getAllRecipes(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	var recipesFound []structs.Recipe
-	results , err := db.Query("SELECT id, name, mealTime, information FROM recipes;")
+	results, err := db.Query("SELECT id, name, mealTime, information FROM recipes;")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	for results.Next() {
 		var recipe structs.Recipe
-		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime, &recipe.Information )
+		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime, &recipe.Information)
 		if err != nil {
 			log.Println(err.Error())
 		}
@@ -41,14 +40,14 @@ func getAllRecipes(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	jsonEncodedData, err := json.Marshal(recipesFound)
 
 	if err != nil {
-		// todo: fix prope error
-		panic(err.Error())
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		log.Println("failed to encode data: ", err.Error())
 	}
 
-	_, err =fmt.Fprint(w, string(jsonEncodedData))
+	_, err = fmt.Fprint(w, string(jsonEncodedData))
 	if err != nil {
-		// todo: fix proper error
-		panic(err.Error())
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		log.Println("failed to print data: ", err.Error())
 	}
 
 }
