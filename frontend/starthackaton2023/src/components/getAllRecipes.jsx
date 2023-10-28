@@ -1,7 +1,7 @@
 import axios from "axios";
 async function GetAllRecipes() {
     try {
-        const response = await axios.get("/recipes");
+        const response = await axios.get("/recipes?type=all");
         if (response.data !== null) {
             return response.data
         } 

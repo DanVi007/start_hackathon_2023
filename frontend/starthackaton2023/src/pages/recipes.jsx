@@ -2,7 +2,7 @@ import "./recipes.modules.css"
 import GreenRightArrow from "../imgs/greenRightArrow.png"
 import AllRecipes from "./allRecipes"
 import { Link } from 'react-router-dom';
-function Recipes() {
+function Recipes() {    
     return(
         <div>
             <h1>Oppskrifter</h1>
@@ -23,7 +23,7 @@ function Recipes() {
 
             <div style={{ display: "flex", alignItems: "center", border: "solid 1px", height: "40px" }}>
                 <p style={{ margin: 0 }}>Alle oppskrifter</p>
-                <div style={{ marginLeft: "auto" }} onClick={AllRecipes}>
+                <div style={{ marginLeft: "auto" }}>
                     <Link to = "/allRecipes" className = "nav-link">
                         <img src={GreenRightArrow} alt="right_arrow" width="50" height="35" style={{ marginLeft: "auto" }} />
                     </Link>
