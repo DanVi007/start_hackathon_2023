@@ -5,8 +5,8 @@ import plus from "../imgs/plus.png";
 
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
-  const [selectedStorageType, setSelectedStorageType] = useState("refrigerator"); // Default value
-  const [searchQuery, setSearchQuery] = useState();
+  const [selectedStorageType, setSelectedStorageType] = useState("refrigerator");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -25,15 +25,25 @@ function Storage() {
     fetchData();
   }, []);
 
+  // Filter the ingredients based on the selected storage type and search query
+  const filteredIngredients = ingredients.filter((ingredient) => {
+    const storageTypeMatches = ingredient.storageType.toLowerCase() === selectedStorageType;
+    const nameMatches = searchQuery === "" || ingredient.name.toLowerCase().includes(searchQuery);
+    return storageTypeMatches && nameMatches;
+  });
+
   return (
     <div>
       <h1 id="title">DINE VARER</h1>
       <hr className="custom-hr" />
       <div className="container">
-        <input type="text" 
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  value={searchQuery}
-                  className="search-field" placeholder="Søk etter varer..." />
+        <input
+          type="text"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
+          className="search-field"
+          placeholder="Søk etter varer..."
+        />
       </div>
       <div className="buttons">
         <select
@@ -45,13 +55,13 @@ function Storage() {
         >
           <img src={arrow} height={10} alt="Arrow" />
           <option className="dropdown-select" value="refrigerator">
-          Refrigerator
+            Refrigerator
           </option>
           <option className="dropdown-select" value="freezer">
             Freezer
           </option>
           <option className="dropdown-select" value="pantry">
-           Pantry
+            Pantry
           </option>
         </select>
         <button className="button" id="knapp">
@@ -60,29 +70,14 @@ function Storage() {
         </button>
       </div>
       <div className="ingredient-list">
-  {ingredients
-    .filter((ingredient) =>
-      ingredient.storageType.toLowerCase() === selectedStorageType
-    )
-    .filter((ingredient) => {
-      // Check if searchQuery is empty
-      if (searchQuery.trim() === "") {
-        return true; // If searchQuery is empty, include all ingredients
-      }
-      // If searchQuery is not empty, filter by ingredient name
-      return ingredient.name.toLowerCase().includes(searchQuery.toLowerCase());
-    })
-    .map((ingredient) => (
-      <button className="ingredient-button">
-        {ingredient.name} - {ingredient.quantity}
-      </button>
-    ))}
-</div>
-
+        {filteredIngredients.map((ingredient) => (
+          <button className="ingredient-button" key={ingredient.id}>
+            {ingredient.name} - {ingredient.quantity}
+          </button>
+        ))}
+      </div>
     </div>
   );
-
-  
 }
 
 export default Storage;
