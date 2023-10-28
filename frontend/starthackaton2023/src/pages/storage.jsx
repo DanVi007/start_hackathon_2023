@@ -58,9 +58,11 @@ function Storage() {
         </button>
       </div>
       <div className="ingredient-list">
-  {ingredients.filter((ingredient) => ingredient.StorageType === selectedStorageType).map((ingredient) => (
+  {ingredients.filter((ingredient) => ingredient.storageType.toLowerCase() === selectedStorageType).map((ingredient) => (
+  
     <button className="ingredient-button">
-      {ingredient.Name} - {ingredient.Quantity}
+        {console.log(ingredient.storageType.toLowerCase())}
+      {ingredient.name} - {ingredient.quantity}
     </button>
   ))}
 </div>
