@@ -50,13 +50,11 @@ function Storage() {
       </div>
       <div className="ingredient-list">
         <h2>Ingredients:</h2>
-        <ul>
-          {ingredients.map((ingredient) => (
-            <li key={ingredient.ingredient_id}>
-              {ingredient.storage_type} - {ingredient.quantity}
-            </li>
-          ))}
-        </ul>
+        {ingredients.map((ingredient) => (
+          <button key={ingredient.ingredient_id} className="ingredient-button">
+            {ingredient.storage_type} - {ingredient.quantity}
+          </button>
+        ))}
       </div>
     </div>
   );

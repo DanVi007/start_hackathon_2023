@@ -82,3 +82,18 @@
     
 padding: 5px;/* Set the container's height as needed */
   }
+
+  /* storage.css */
+.ingredient-button {
+  display: block; /* Make the buttons block-level elements */
+  margin-bottom: 10px; /* Add vertical margin to create spacing */
+  padding: 10px;
+  background-color: white;
+  outline-color: gray;
+  color: green;
+  cursor: pointer;
+  border-radius: 5px; 
+  border: 2px solid gray;
+  width: 100%;
+  text-align: left;
+}
