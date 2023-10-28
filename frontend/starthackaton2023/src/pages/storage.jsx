@@ -5,7 +5,7 @@ import plus from "../imgs/plus.png";
 
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
-  const [selectedStorageType, setSelectedStorageType] = useState("refridgerator"); // Default value
+  const [selectedStorageType, setSelectedStorageType] = useState("refrigerator"); // Default value
 
   useEffect(() => {
     async function fetchData() {
@@ -13,7 +13,6 @@ function Storage() {
         const response = await fetch("/storage");
         if (response.ok) {
           const data = await response.json();
-          console.log(data); // Log the response data
           setIngredients(data);
         } else {
           console.error("Failed to fetch data from the API");
@@ -24,7 +23,6 @@ function Storage() {
     }
     fetchData();
   }, []);
-  
 
   return (
     <div>
@@ -42,8 +40,8 @@ function Storage() {
           value={selectedStorageType}
         >
           <img src={arrow} height={10} alt="Arrow" />
-          <option className="dropdown-select" value="refridgerator">
-          Refridgerator
+          <option className="dropdown-select" value="refrigerator">
+          Refrigerator
           </option>
           <option className="dropdown-select" value="freezer">
             Freezer
@@ -58,14 +56,16 @@ function Storage() {
         </button>
       </div>
       <div className="ingredient-list">
-  {ingredients.filter((ingredient) => ingredient.StorageType === selectedStorageType).map((ingredient) => (
-    <button className="ingredient-button">
-      {ingredient.Name} - {ingredient.Quantity}
-    </button>
-  ))}
-</div>
+      {ingredients.filter((ingredient) => ingredient.storageType.toLowerCase() === selectedStorageType).map((ingredient) => (
+            <button className="ingredient-button">
+              {ingredient.name} - {ingredient.quantity}
+            </button>
+          ))}
+      </div>
     </div>
   );
+
+  
 }
 
 export default Storage;
