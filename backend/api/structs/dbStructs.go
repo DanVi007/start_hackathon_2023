@@ -7,5 +7,12 @@ type Recipe struct {
 	MealTime string `json:"mealTime"`
 	Information string `json:"information"`
 	Image string `json:"image"`
+}
 
+
+type Ingredient struct {
+	UserId int `json:"user_id"`
+	IngredientId string `json:"ingredient_id"`
+	StorageType string `json:"storage_type"`
+	Quantity int `json:"quantity"`
 }
