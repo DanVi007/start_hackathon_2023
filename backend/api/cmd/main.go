@@ -25,9 +25,6 @@ func main() {
 	http.HandleFunc(constants.RECIPE_PATH, handlers.HandleRecipes(db))
 	http.HandleFunc(constants.RECIPE_PATH+"/", handlers.HandleRecipes(db))
 
-	http.HandleFunc(constants.RECIPE_PATH, handlers.HandleRecipes(db))
-	http.HandleFunc(constants.RECIPE_PATH+"/", handlers.HandleRecipes(db))
-
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Println("$PORT has not been set. Default is 8080.")
