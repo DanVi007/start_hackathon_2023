@@ -1,26 +1,25 @@
-import "./storage.css"
-import arrow from "../imgs/rightArrow.png"
-import plus from "../imgs/plus.png"
+import React, { useState, useEffect } from "react";
+import "./storage.css";
+import arrow from "../imgs/rightArrow.png";
+import plus from "../imgs/plus.png";
+
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    // Define a function to fetch data from the Go API
     async function fetchData() {
       try {
-        const response = await fetch("/storage"); // Replace with the actual API endpoint
+        const response = await fetch("/storage");
         if (response.ok) {
           const data = await response.json();
           setIngredients(data);
         } else {
-          console.error("BRUH");
+          console.error("Failed to fetch data from the API");
         }
       } catch (error) {
         console.error("An error occurred while fetching data:", error);
       }
     }
-
-    // Call the fetchData function when the component mounts
     fetchData();
   }, []);
 
