@@ -13,21 +13,23 @@ import (
 
 func main() {
 
+	dataSourceName := constants.SQL_DATABASE_USER + "@" + constants.SQL_PATH +
+		"/" + constants.SQL_DATABASE_NAME
 
-	dataSourceName := constants.SQL_DATABASE_USER + "@" + constants.SQL_PATH + 
-	"/" + constants.SQL_DATABASE_NAME
-
-	db , err := sql.Open("mysql", dataSourceName)
+	db, err := sql.Open("mysql", dataSourceName)
 	if err != nil {
 		panic(err.Error())
 	}
 	defer db.Close()
 
 	http.HandleFunc(constants.RECIPE_PATH, handlers.HandleRecipes(db))
-	http.HandleFunc(constants.RECIPE_PATH+ "/", handlers.HandleRecipes(db))
+	http.HandleFunc(constants.RECIPE_PATH+"/", handlers.HandleRecipes(db))
+	http.HandleFunc(constants.STORAGE_PATH, handlers.HandleStorage(db))
+	http.HandleFunc(constants.STORAGE_PATH+"/", handlers.HandleStorage(db))
+
 
 	port := os.Getenv("PORT")
-	if port == ""  {
+	if port == "" {
 		log.Println("$PORT has not been set. Default is 8080.")
 		port = "8080"
 	}
@@ -38,6 +40,4 @@ func main() {
 		log.Fatalf("failed to initialize server: %v", err)
 	}
 
-
-	
 }

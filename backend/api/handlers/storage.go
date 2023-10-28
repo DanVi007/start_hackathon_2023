@@ -9,11 +9,11 @@ import (
 	"net/http"
 )
 
-func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
+func HandleStorage(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodGet:
-			getAllRecipes(w, r, db)
+			getAllIngredients(w, r, db)
 		default:
 			log.Print("No implementation for method " + r.Method)
 			http.Error(w, http.StatusText(http.StatusNotImplemented), http.StatusNotImplemented)
@@ -21,23 +21,23 @@ func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func getAllRecipes(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-	var recipesFound []structs.Recipe
-	results, err := db.Query("SELECT id, name, mealTime, information FROM recipes;")
+func getAllIngredients(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+	var ingredientsFound []structs.Ingredient
+	results, err := db.Query("SELECT ingredient_id, storage_type, quantity FROM ingredients_in_storage;")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	for results.Next() {
-		var recipe structs.Recipe
-		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime, &recipe.Information)
+		var ingredient structs.Ingredient
+		err = results.Scan(&ingredient.IngredientId, &ingredient.StorageType, &ingredient.Quantity)
 		if err != nil {
 			log.Println(err.Error())
 		}
-		recipesFound = append(recipesFound, recipe)
+		ingredientsFound = append(ingredientsFound, ingredient)
 	}
 	w.Header().Add("content-type", "application/json")
-	jsonEncodedData, err := json.Marshal(recipesFound)
+	jsonEncodedData, err := json.Marshal(ingredientsFound)
 
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)

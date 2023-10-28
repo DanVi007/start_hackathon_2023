@@ -2,29 +2,47 @@
     display: flex;
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  gap: 20%; /* Add space between the button and the dropdown */
+  gap: 10px; /* Add space between the button and the dropdown */
+
 }
+
+
+.select {
+    margin-left: 7.5%;
+    width: 60%; /* Set the width as needed */
+    height: 20; /* Set the height as needed */
+  }
+  
+  /* Style the button */
+  .button {
+    margin-right: 7.5%;
+    width: 60%; /* Set the width as needed */
+    height: 20px; /* Set the height as needed */
+    text-align: left;
+    
+  }
 
 #storagetype {
     display: inline-block;
 }
 
 /* Style the dropdown button */
-.dropdown-button {
+#knapp {
     background-color: gainsboro;
     color: green;
     border: none;
     cursor: pointer;
-    padding: 10px 20px; /* Adjust padding as needed */
     border-radius: 5px; /* Add rounded corners */
   }
   
+#title {
+    margin-left: 20px;
+}
+
   /* Style the select element */
-  .dropdown-select {
-    appearance: none; /* Remove the default OS-specific styling */
-    background-color: white;
-    border: 1px solid #ccc; /* Add a border to the select element (you can remove this line if you want to remove the border) */
-    padding: 10px 20px; /* Adjust padding as needed */
+  #storagetype {
+    background-color: gainsboro;
+    border: none; /* Add a border to the select element (you can remove this line if you want to remove the border) */
     color: green; /* Set text color to green */
     border-radius: 5px; /* Add rounded corners */
   }
@@ -41,11 +59,26 @@
     border: none;
   }
 
-  .search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 7px;
-    width: 1fr;
+  .search-field {
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    width: 100%; /* Set the width to your desired value (e.g., 200 pixels) */
+    padding: 5px; /* Add padding as needed for styling */
+    font-size: 10px; /* Set the font size as needed */
+    border-radius: 5px;
   }
   
+  .custom-hr {
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    border: none; /* Remove the default border */
+    border-top: 1px solid #ccc; /* Add a custom border with the desired style */
+  }
+
+  .container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    
+padding: 5px;/* Set the container's height as needed */
+  }
