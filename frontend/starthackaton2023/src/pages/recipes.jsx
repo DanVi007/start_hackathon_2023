@@ -1,4 +1,4 @@
-import "./recipes.css"
+import "./recipes.modules.css"
 import GreenRightArrow from "../imgs/greenRightArrow.png"
 import AllRecipes from "./allRecipes"
 import { Link } from 'react-router-dom';

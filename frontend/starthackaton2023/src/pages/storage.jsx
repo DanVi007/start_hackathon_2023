@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "./storage.css";
-import arrow from "../imgs/rightArrow.png";
-import plus from "../imgs/plus.png";
-
+import "./storage.module.css"
+import arrow from "../imgs/rightArrow.png"
+import plus from "../imgs/plus.png"
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
 
