@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 28, 2023 at 10:00 AM
+-- Generation Time: Oct 28, 2023 at 06:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -105,17 +105,23 @@ CREATE TABLE `recipes` (
   `roasting_time` int(11) DEFAULT NULL,
   `rest_time` int(11) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
-  `difficulty` ENUM('low', 'medium', 'hard') DEFAULT NULL
+  `difficulty` enum('low','medium','hard') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
 -- Dumping data for table `recipes`
 --
 
-INSERT INTO `recipes` (`id`, `name`, `mealTime`, `information`, `image`) VALUES
-(1, 'Pancakes', 'Breakfast', 'Delicious pancakes for breakfast', NULL),
-(2, 'Spaghetti Bolognese', 'Dinner', 'Classic Italian dish', NULL),
-(3, 'Chocolate Cake', 'Dessert', 'Indulgent chocolate cake', NULL);
+INSERT INTO `recipes` (`id`, `name`, `mealTime`, `information`, `image`, `time_it_takes`, `roasting_time`, `rest_time`, `rating`, `difficulty`) VALUES
+(1, 'Pancakes', 'Breakfast', 'Delicious pancakes for breakfast', NULL, 50, 12, 0, 4, 'medium'),
+(2, 'Spaghetti Bolognese', 'Dinner', 'Classic Italian dish', NULL, 30, 12, 1, 1, 'hard'),
+(3, 'Chocolate Cake', 'Dessert', 'Indulgent chocolate cake', NULL, 12, 1, 1, 1, 'hard'),
+(4, 'Pasta Carbonara', 'Dinner', 'Creamy Italian pasta dish', NULL, 30, 0, 10, 4, 'medium'),
+(5, 'Chicken Curry', 'Lunch', 'Spicy chicken curry with rice', NULL, 45, 20, 5, 3, 'hard'),
+(6, 'Salad Bowl', 'Lunch', 'Healthy salad with mixed greens', NULL, 15, 0, 0, 4, 'low'),
+(7, 'Chocolate Cake', 'Dessert', 'Decadent chocolate cake', NULL, 60, 0, 15, 5, 'medium'),
+(8, 'Grilled Salmon', 'Dinner', 'Freshly grilled salmon fillet', NULL, 20, 15, 0, 4, 'medium'),
+(9, 'Omelette', 'Breakfast', 'Classic breakfast omelette', NULL, 10, 0, 5, 4, 'low');
 
 -- --------------------------------------------------------
 
@@ -187,7 +193,7 @@ ALTER TABLE `ingredients`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
