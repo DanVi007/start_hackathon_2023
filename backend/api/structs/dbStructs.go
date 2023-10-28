@@ -11,7 +11,6 @@ type Recipe struct {
 
 
 type Ingredient struct {
-	IngredientId string `json:"ingredient_id"`
-	StorageType string `json:"storage_type"`
+	Name string `json:"name"`
 	Quantity int `json:"quantity"`
 }
