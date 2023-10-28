@@ -24,6 +24,9 @@ func main() {
 
 	http.HandleFunc(constants.RECIPE_PATH, handlers.HandleRecipes(db))
 	http.HandleFunc(constants.RECIPE_PATH+"/", handlers.HandleRecipes(db))
+	http.HandleFunc(constants.STORAGE_PATH, handlers.HandleStorage(db))
+	http.HandleFunc(constants.STORAGE_PATH+"/", handlers.HandleStorage(db))
+
 
 	port := os.Getenv("PORT")
 	if port == "" {
