@@ -5,6 +5,7 @@ import plus from "../imgs/plus.png";
 
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
+  const [selectedStorageType, setSelectedStorageType] = useState("refridgerator"); // Default value
 
   useEffect(() => {
     async function fetchData() {
@@ -31,16 +32,22 @@ function Storage() {
         <input type="text" className="search-field" placeholder="Søk etter varer..." />
       </div>
       <div className="buttons">
-        <select className="select" name="storagetype" id="storagetype">
+        <select
+          className="select"
+          name="storagetype"
+          id="storagetype"
+          onChange={(e) => setSelectedStorageType(e.target.value)}
+          value={selectedStorageType}
+        >
           <img src={arrow} height={10} alt="Arrow" />
-          <option className="dropdown-select" value="kjøleskap">
-            Kjøleskap
+          <option className="dropdown-select" value="refridgerator">
+          Refridgerator
           </option>
-          <option className="dropdown-select" value="fryser">
-            Fryser
+          <option className="dropdown-select" value="freezer">
+            Freezer
           </option>
           <option className="dropdown-select" value="pantry">
-            Pantry
+           Pantry
           </option>
         </select>
         <button className="button" id="knapp">
@@ -49,15 +56,16 @@ function Storage() {
         </button>
       </div>
       <div className="ingredient-list">
-        <h2>Ingredients:</h2>
-        {ingredients.map((ingredient) => (
-          <button key={ingredient.ingredient_id} className="ingredient-button">
-            {ingredient.storage_type} - {ingredient.quantity}
-          </button>
-        ))}
+      {ingredients.filter((ingredient) => ingredient === 1000).map((ingredient) => (
+            <button className="ingredient-button">
+              {ingredient.name} - {ingredient.quantity}
+            </button>
+          ))}
       </div>
     </div>
   );
+
+  
 }
 
 export default Storage;
