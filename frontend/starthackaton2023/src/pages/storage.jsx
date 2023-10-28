@@ -64,16 +64,19 @@ function Storage() {
             Pantry
           </option>
         </select>
-        <button className="button" id="knapp">
-          <img src={plus} height={10} alt="Plus" />
-          Legg til
-        </button>
+            <button className="button" id="knapp">
+            <img src={plus} height={10} alt="Plus" />
+            Legg til
+            </button>
       </div>
+      <br />
       <div className="ingredient-list">
         {filteredIngredients.map((ingredient) => (
-          <button className="ingredient-button" key={ingredient.id}>
+          <div className="ingredient-button" key={ingredient.id}>
             {ingredient.name} - {ingredient.quantity}
-          </button>
+            <button id="plus-button"class="small-button">+</button>
+            <button id="minus-button" class="small-button">-</button>
+          </div>
         ))}
       </div>
     </div>
