@@ -100,7 +100,12 @@ CREATE TABLE `recipes` (
   `name` varchar(255) DEFAULT NULL,
   `mealTime` varchar(255) DEFAULT NULL,
   `information` varchar(255) DEFAULT NULL,
-  `image` blob DEFAULT NULL
+  `image` blob DEFAULT NULL,
+  `time_it_takes` int(11) DEFAULT NULL,
+  `roasting_time` int(11) DEFAULT NULL,
+  `rest_time` int(11) DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `difficulty` ENUM('low', 'medium', 'hard') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
