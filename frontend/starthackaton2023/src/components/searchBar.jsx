@@ -1,11 +1,8 @@
-function SearchBar() {
+function SearchBar(props) {
   return (
-    <div className="search-container">
-      <form action="/search" method="get">
-        <input type="text" name="q" placeholder="Search..." />
-        <input type="submit" value="Search" />
-      </form>
-    </div>
+<div class="form-outline">
+  <input type="search" id="form1" class="form-control" placeholder={props.placeholder} aria-label="Search" />
+</div>
   );
 }
 
