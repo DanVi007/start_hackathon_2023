@@ -1,4 +1,4 @@
-import "./storage.css"
+import "./storage.module.css"
 import arrow from "../imgs/rightArrow.png"
 import plus from "../imgs/plus.png"
 function Storage() {
