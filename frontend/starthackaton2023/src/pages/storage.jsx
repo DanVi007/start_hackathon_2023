@@ -13,6 +13,7 @@ function Storage() {
         const response = await fetch("/storage");
         if (response.ok) {
           const data = await response.json();
+          console.log(data); // Log the response data
           setIngredients(data);
         } else {
           console.error("Failed to fetch data from the API");
@@ -23,6 +24,7 @@ function Storage() {
     }
     fetchData();
   }, []);
+  
 
   return (
     <div>
@@ -56,16 +58,14 @@ function Storage() {
         </button>
       </div>
       <div className="ingredient-list">
-      {ingredients.filter((ingredient) => ingredient === 1000).map((ingredient) => (
-            <button className="ingredient-button">
-              {ingredient.name} - {ingredient.quantity}
-            </button>
-          ))}
-      </div>
+  {ingredients.filter((ingredient) => ingredient.StorageType === selectedStorageType).map((ingredient) => (
+    <button className="ingredient-button">
+      {ingredient.Name} - {ingredient.Quantity}
+    </button>
+  ))}
+</div>
     </div>
   );
-
-  
 }
 
 export default Storage;
