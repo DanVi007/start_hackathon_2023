@@ -10,12 +10,22 @@ import (
 )
 
 func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
+
 	return func(w http.ResponseWriter, r *http.Request) {
+		queryValues := r.URL.Query()
+		typeValue := queryValues.Get("type")
+
 		switch r.Method {
 		case http.MethodGet:
-			getAllRecipes(w, r, db)
+			switch typeValue {
+			case "all":
+				getAllRecipes(w, r, db)
+			default:
+				log.Print("no type for type " + typeValue)
+				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			}
 		default:
-			log.Print("No implementation for method " + r.Method)
+			log.Print("no implementation for method " + r.Method)
 			http.Error(w, http.StatusText(http.StatusNotImplemented), http.StatusNotImplemented)
 		}
 	}
