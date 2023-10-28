@@ -1,0 +1,31 @@
+h1 {
+    font-size: medium;
+    font-weight: bold;
+}
+
+hr {
+    opacity: 1;
+    color: #197a56;
+}
+
+/* .ri-arrow-left-s-line {
+    position: relative;
+    left:-10%;
+    top:10%;
+
+    font-size: xx-large;
+} */
+.recipes{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.recipeBox {
+    background-color: plum;
+    /* padding: 10px; */
+    border-radius: 15px;
+    height: 0;
+    width:20%;
+    padding-bottom: 20%;
+
+}
