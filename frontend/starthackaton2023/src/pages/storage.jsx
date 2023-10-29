@@ -8,22 +8,47 @@ function Storage() {
   const [selectedStorageType, setSelectedStorageType] = useState("refrigerator");
   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
+  const fetchData = async () => {
+    try {
         const response = await fetch("/storage");
         if (response.ok) {
-          const data = await response.json();
-          setIngredients(data);
+            const data = await response.json();
+            setIngredients(data);
         } else {
-          console.error("Failed to fetch data from the API");
+            console.error("Failed to fetch data from the API");
         }
-      } catch (error) {
+    } catch (error) {
         console.error("An error occurred while fetching data:", error);
-      }
     }
+};
+
+useEffect(() => {
     fetchData();
-  }, []);
+}, []);
+
+const handleIngredientUpdate = async (ingredientName, quantityChange) => {
+    try {
+        const response = await fetch("/storage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ingredientName,
+                quantityChange,
+            }),
+        });
+
+        if (response.ok) {
+            // Successfully updated ingredient quantity, you can update the state or perform a refetch.
+            fetchData(); // Refetch data
+        } else {
+            console.error("Failed to update ingredient quantity");
+        }
+    } catch (error) {
+        console.error("An error occurred while updating ingredient quantity:", error);
+    }
+};
 
   // Filter the ingredients based on the selected storage type and search query
   const filteredIngredients = ingredients.filter((ingredient) => {
@@ -66,19 +91,31 @@ function Storage() {
         </select>
             <button className="button" id="knapp">
             <img src={plus} height={10} alt="Plus" />
-            Legg til
+            Scan kvittering
             </button>
       </div>
       <br />
       <div className="ingredient-list">
-        {filteredIngredients.map((ingredient) => (
-          <div className="ingredient-button" key={ingredient.id}>
-            {ingredient.name} - {ingredient.quantity}
-            <button id="plus-button"class="small-button">+</button>
-            <button id="minus-button" class="small-button">-</button>
-          </div>
-        ))}
-      </div>
+                {filteredIngredients.map((ingredient) => (
+                    <div className="ingredient-button" key={ingredient.id}>
+                        {ingredient.name} - {ingredient.quantity}
+                        <button
+                            id="plus-button"
+                            className="small-button"
+                            onClick={() => handleIngredientUpdate(ingredient.name, 1)}
+                        >
+                            +
+                        </button>
+                        <button
+                            id="minus-button"
+                            className="small-button"
+                            onClick={() => handleIngredientUpdate(ingredient.name, -1)}
+                        >
+                            -
+                        </button>
+                    </div>
+                ))}
+            </div>
     </div>
   );
 }
