@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import FoodImage from '../imgs/testFoodImage.avif'
 import GetRecipeById from "../components/getRecipeById";
 function Recipe() {
-    let { id } = useParams();
+    const id = new URLSearchParams(window.location.search).get("id");
+    console.log("id: " + id)
     const [recipe, setRecipe] = useState([]);
     
 
@@ -17,10 +18,19 @@ function Recipe() {
     }
 
     fetchRecipes();
-  }, [id]);
+  }, []);
     return(
         <div>
-            {recipe.id}
+            <div style={{ marginRight: "50%" }} key={recipe.id}>
+                <img
+                    alt="food"
+                    style={{ marginTop:"-30%", marginLeft:"-27%" }}
+                    width="330px"
+                    src={FoodImage}
+                />
+            <div>{recipe.name}</div><br/>
+            <div>Ingredient list...</div>
+          </div>
         </div>
     )
 }
