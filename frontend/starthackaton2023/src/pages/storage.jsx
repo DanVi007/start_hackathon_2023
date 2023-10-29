@@ -87,7 +87,7 @@ console.log(quantityChange)
             Fryser
           </option>
           <option className="dropdown-select" value="pantry">
-            Pantry
+          Spiskammer
           </option>
         </select>
             <button className="button" id="knapp">
