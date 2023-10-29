@@ -38,7 +38,8 @@ const handleIngredientUpdate = async (ingredientName, quantityChange) => {
                 quantityChange,
             }),
         });
-
+console.log(ingredientName)
+console.log(quantityChange)
         if (response.ok) {
             // Successfully updated ingredient quantity, you can update the state or perform a refetch.
             fetchData(); // Refetch data
@@ -80,10 +81,10 @@ const handleIngredientUpdate = async (ingredientName, quantityChange) => {
         >
           <img src={arrow} height={10} alt="Arrow" />
           <option className="dropdown-select" value="refrigerator">
-            Refrigerator
+            Kjøleskap
           </option>
           <option className="dropdown-select" value="freezer">
-            Freezer
+            Fryser
           </option>
           <option className="dropdown-select" value="pantry">
             Pantry
@@ -98,7 +99,7 @@ const handleIngredientUpdate = async (ingredientName, quantityChange) => {
       <div className="ingredient-list">
                 {filteredIngredients.map((ingredient) => (
                     <div className="ingredient-button" key={ingredient.id}>
-                        {ingredient.name} - {ingredient.quantity}
+                        {ingredient.name} - {ingredient.quantity} ~ {ingredient.quantitytype}
                         <button
                             id="plus-button"
                             className="small-button"

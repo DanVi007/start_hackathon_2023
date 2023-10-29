@@ -25,14 +25,14 @@ func HandleStorage(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func getAllIngredients(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	var ingredientsFound []structs.Ingredient
-	results, err := db.Query("SELECT ingredients.name, ingredients_in_storage.quantity, ingredients_in_storage.storage_type FROM ingredients_in_storage JOIN ingredients ON ingredients_in_storage.ingredient_id = ingredients.id;")
+	results, err := db.Query("SELECT ingredients.name, ingredients.quantity_type, ingredients_in_storage.quantity, ingredients_in_storage.storage_type FROM ingredients_in_storage JOIN ingredients ON ingredients_in_storage.ingredient_id = ingredients.id;")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	for results.Next() {
 		var ingredient structs.Ingredient
-		err = results.Scan(&ingredient.Name, &ingredient.Quantity, &ingredient.StorageType)
+		err = results.Scan(&ingredient.Name, &ingredient.QuantityType, &ingredient.Quantity, &ingredient.StorageType)
 		if err != nil {
 			log.Println(err.Error())
 		}
