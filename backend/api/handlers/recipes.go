@@ -20,6 +20,8 @@ func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 			switch typeValue {
 			case "all":
 				getAllRecipes(w, r, db)
+			case "recommended":
+				getRecommendedRecipes(w, r, db)
 			default:
 				log.Print("no type for type " + typeValue)
 				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
@@ -28,6 +30,39 @@ func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 			log.Print("no implementation for method " + r.Method)
 			http.Error(w, http.StatusText(http.StatusNotImplemented), http.StatusNotImplemented)
 		}
+	}
+}
+
+func getRecommendedRecipes(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+	var recipesFound []structs.Recipe
+	results, err := db.Query("SELECT * FROM recipes JOIN ingredients_in_recipe ON recipes.id = ingredients_in_recipe.recipe LEFT JOIN ingredients_in_storage ON ingredients_in_recipe.ingredient = ingredients_in_storage.ingredient_id GROUP BY recipes.id HAVING COUNT(ingredients_in_storage.user_id) = COUNT(ingredients_in_recipe.recipe) AND ingredients_in_storage.quantity >= ingredients_in_recipe.quantity;")
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	for results.Next() {
+		var recipe structs.Recipe
+		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime,
+			&recipe.Information, &recipe.TimeItTakes, &recipe.RoastingTime,
+			&recipe.RestTime, &recipe.Rating, &recipe.Difficulty)
+
+		if err != nil {
+			log.Println(err.Error())
+		}
+		recipesFound = append(recipesFound, recipe)
+	}
+	w.Header().Add("content-type", "application/json")
+	jsonEncodedData, err := json.Marshal(recipesFound)
+
+	if err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		log.Println("failed to encode data: ", err.Error())
+	}
+
+	_, err = fmt.Fprint(w, string(jsonEncodedData))
+	if err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		log.Println("failed to print data: ", err.Error())
 	}
 }
 
