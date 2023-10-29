@@ -102,6 +102,10 @@ padding: 5px;/* Set the container's height as needed */
   align-items: center;
 }
 
+.ingredient-list {
+  margin-bottom: 50px;
+}
+
 .small-button {
   position: absolute;
   background-color: white;

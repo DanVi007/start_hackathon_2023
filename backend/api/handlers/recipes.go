@@ -20,13 +20,8 @@ func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 			switch typeValue {
 			case "all":
 				getAllRecipes(w, r, db)
-<<<<<<< HEAD
-			case "recommended":
-				getRecommendedRecipes(w, r, db)
-=======
 			case "":
 				getRecipeById(w, r, db)
->>>>>>> 90a177a9cb9f96483290f27a2eabc870b26e16f7
 			default:
 				log.Print("no type for type " + typeValue)
 				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
