@@ -25,7 +25,7 @@ function Recipe() {
                 <img
                     alt="food"
                     style={{ marginTop:"-30%", marginLeft:"-27%" }}
-                    width="330px"
+                    width="400px"
                     src={FoodImage}
                 />
             <div>{recipe.name}</div><br/>
