@@ -33,6 +33,9 @@
     border: none;
     cursor: pointer;
     border-radius: 5px; /* Add rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: left;
   }
   
 #title {
@@ -85,15 +88,50 @@ padding: 5px;/* Set the container's height as needed */
 
   /* storage.css */
 .ingredient-button {
-  display: block; /* Make the buttons block-level elements */
+  position:relative;
+  display: flex; /* Make the buttons block-level elements */
   margin-bottom: 10px; /* Add vertical margin to create spacing */
   padding: 10px;
   background-color: white;
   outline-color: gray;
   color: green;
-  cursor: pointer;
   border-radius: 5px; 
   border: 2px solid gray;
   width: 100%;
   text-align: left;
+  align-items: center;
 }
+
+.small-button {
+  position: absolute;
+  background-color: white;
+  outline-color: gray;
+  color: green;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+  /* Position the plus button to the right */
+  #plus-button {
+    right: 40px; /* Adjust this value as needed for proper spacing */
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  /* Position the minus button to the right */
+  #minus-button {
+    right: 20px; /* Adjust this value as needed for proper spacing */
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }

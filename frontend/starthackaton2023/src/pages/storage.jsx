@@ -5,7 +5,8 @@ import plus from "../imgs/plus.png";
 
 function Storage() {
   const [ingredients, setIngredients] = useState([]);
-  const [selectedStorageType, setSelectedStorageType] = useState("refridgerator"); // Default value
+  const [selectedStorageType, setSelectedStorageType] = useState("refrigerator");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -13,7 +14,6 @@ function Storage() {
         const response = await fetch("/storage");
         if (response.ok) {
           const data = await response.json();
-          console.log(data); // Log the response data
           setIngredients(data);
         } else {
           console.error("Failed to fetch data from the API");
@@ -24,14 +24,26 @@ function Storage() {
     }
     fetchData();
   }, []);
-  
+
+  // Filter the ingredients based on the selected storage type and search query
+  const filteredIngredients = ingredients.filter((ingredient) => {
+    const storageTypeMatches = ingredient.storageType.toLowerCase() === selectedStorageType;
+    const nameMatches = searchQuery === "" || ingredient.name.toLowerCase().includes(searchQuery);
+    return storageTypeMatches && nameMatches;
+  });
 
   return (
     <div>
       <h1 id="title">DINE VARER</h1>
       <hr className="custom-hr" />
       <div className="container">
-        <input type="text" className="search-field" placeholder="Søk etter varer..." />
+        <input
+          type="text"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
+          className="search-field"
+          placeholder="Søk etter varer..."
+        />
       </div>
       <div className="buttons">
         <select
@@ -42,28 +54,31 @@ function Storage() {
           value={selectedStorageType}
         >
           <img src={arrow} height={10} alt="Arrow" />
-          <option className="dropdown-select" value="refridgerator">
-          Refridgerator
+          <option className="dropdown-select" value="refrigerator">
+            Refrigerator
           </option>
           <option className="dropdown-select" value="freezer">
             Freezer
           </option>
           <option className="dropdown-select" value="pantry">
-           Pantry
+            Pantry
           </option>
         </select>
-        <button className="button" id="knapp">
-          <img src={plus} height={10} alt="Plus" />
-          Legg til
-        </button>
+            <button className="button" id="knapp">
+            <img src={plus} height={10} alt="Plus" />
+            Legg til
+            </button>
       </div>
+      <br />
       <div className="ingredient-list">
-  {ingredients.filter((ingredient) => ingredient.StorageType === selectedStorageType).map((ingredient) => (
-    <button className="ingredient-button">
-      {ingredient.Name} - {ingredient.Quantity}
-    </button>
-  ))}
-</div>
+        {filteredIngredients.map((ingredient) => (
+          <div className="ingredient-button" key={ingredient.id}>
+            {ingredient.name} - {ingredient.quantity}
+            <button id="plus-button"class="small-button">+</button>
+            <button id="minus-button" class="small-button">-</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

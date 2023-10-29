@@ -42,7 +42,8 @@ INSERT INTO `ingredients` (`id`, `name`, `image`, `quantity_type`) VALUES
 (1, 'Flour', NULL, 'grams'),
 (2, 'Eggs', NULL, 'pieces'),
 (3, 'Milk', NULL, 'milliliters'),
-(4, 'Sugar', NULL, 'grams');
+(4, 'Sugar', NULL, 'grams'),
+(5, 'Salt', NULL, 'grams');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,9 @@ CREATE TABLE `ingredients_in_storage` (
 INSERT INTO `ingredients_in_storage` (`user_id`, `ingredient_id`, `storage_type`, `quantity`) VALUES
 (1, 1, 'Pantry', 1000),
 (1, 2, 'Refrigerator', 12),
-(1, 3, 'Freezer', 500);
+(1, 3, 'Freezer', 500),
+(1, 4, 'Pantry', 53232),
+(1, 5, 'Refrigerator', 1);
 
 -- --------------------------------------------------------
 
