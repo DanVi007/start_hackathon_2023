@@ -3,6 +3,7 @@ import SearchBar from "../components/searchBar";
 import "./recommendedRecipes.modules.css";
 import GetAllRecipes from "../components/getAllRecipes";
 import FormatRecipes from "../components/formatRecipes";
+import GetRecommendedRecipes from "../components/getRecommendedRecipes";
 
 function RecommendedRecipes() {
     const [recommendedRecipes, setRecommendedRecipes] = useState([]);
@@ -10,7 +11,7 @@ function RecommendedRecipes() {
     useEffect(() => {
         async function fetchRecipes() {
             try {
-                const response = await GetAllRecipes();
+                const response = await GetRecommendedRecipes();
                 setRecommendedRecipes(response);
             } catch (error) {
                 console.error('Error fetching recipes:', error);
