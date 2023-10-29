@@ -23,7 +23,7 @@ func HandleRecipes(db *sql.DB) func(w http.ResponseWriter, r *http.Request) {
 			case "":
 				getRecipeById(w, r, db)
 			case "recommended":
-				getRecommendedRecipes(w,r,db)
+				getRecommendedRecipes(w, r, db)
 			default:
 				log.Print("no type for type " + typeValue)
 				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
@@ -50,7 +50,7 @@ func getRecommendedRecipes(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		err = results.Scan(&recipe.Id, &recipe.Name, &recipe.MealTime,
 			&recipe.Information, &recipe.TimeItTakes, &recipe.RoastingTime,
 			&recipe.RestTime, &recipe.Rating, &recipe.Difficulty,
-		&storageQuantity, recipeQuantity)
+			&storageQuantity, &recipeQuantity)
 
 		if err != nil {
 			log.Println(err.Error())
