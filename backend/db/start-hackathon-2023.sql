@@ -125,7 +125,7 @@ INSERT INTO `ingredients_in_storage` (`user_id`, `ingredient_id`, `storage_type`
 (1, 1, 'Pantry', 1000),
 (1, 2, 'Refrigerator', 12),
 (1, 3, 'Freezer', 500),
-(1, 4, 'Pantry', 53232),
+(1, 4, 'Pantry', 1000),
 (1, 5, 'Refrigerator', 1),
 (1, 6, 'Refrigerator', 250),
 (1, 7, 'Pantry', 300),
