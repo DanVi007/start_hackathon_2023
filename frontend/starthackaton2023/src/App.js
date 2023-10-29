@@ -5,6 +5,7 @@ import "./App.css"
 import AllRecipes from './pages/allRecipes';
 import Recipe from './pages/recipe'
 import RecommendedRecipes from './pages/recommendedRecipes';
+import NavBar from './components/navbar';
 function App() {
   return (
     <div className = "padding">
@@ -16,6 +17,7 @@ function App() {
             <Route path="/recipe" element = {<Recipe/>}/>
             <Route path="/recommendedRecipes" element = {<RecommendedRecipes/>}/>
       </Routes>
+      <NavBar/>
     </div>
   );
 }
