@@ -8,7 +8,7 @@ function FormatRecipes(recipes) {
         // Render your recipe data here
         tempArray.push(
           <div style={{ marginRight: "50%" }} key={recipe.id}>
-            <Link to={"/recipe?id=" + recipe.id}>
+            <Link to={"/recipe?id="+recipe.id}>
               <img
               alt="food"
                 style={{ borderRadius: "10%" }}
